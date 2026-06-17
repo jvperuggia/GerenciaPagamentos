@@ -8,6 +8,10 @@ on:
   pull_request:
     branches:
       - main # execução automática em PRs para main
+  schedule:
+    # Cronograma de execução
+    #1- minuto, 2 - hora, 3 - dia do mes, 4 - mês,
+    - cron: '*/15 * * * 2,3,6'    
 
 jobs:
   e2e-tests:
