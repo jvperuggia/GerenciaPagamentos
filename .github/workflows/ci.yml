@@ -13,6 +13,9 @@ on:
     #1- minuto, 2 - hora, 3 - dia do mes, 4 - mês,
     - cron: '*/15 * * * 2,3,6'    
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # remover alerta do GitHub no final da execução
+
 jobs:
   e2e-tests:
     runs-on: ubuntu-latest
@@ -61,15 +64,16 @@ jobs:
         with:
           path: ./mochawesome-report
           name: Relatório de Testes Mocha
-      - name: Adicionar resumo no GitHub Actions
+      
+      - name: Publicar relatório no GitHub Pages
+        if: ${{ always() }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./mochawesome-report    
+
+      - name: Mostrar link do relatório
         if: ${{ always() }}
         run: |
-          passed=$(jq '.stats.passes' mochawesome-report/merged.json)
-          failed=$(jq '.stats.failures' mochawesome-report/merged.json)
-          total=$(jq '.stats.tests' mochawesome-report/merged.json)
-
-          echo "## 🧪 Resumo dos Testes" >> $GITHUB_STEP_SUMMARY
-          echo "- Total de testes: $total" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ Passaram: $passed" >> $GITHUB_STEP_SUMMARY
-          echo "- ❌ Falharam: $failed" >> $GITHUB_STEP_SUMMARY
-          echo "- 📂 Relatório consolidado disponível como artefato: **Relatório Consolidado Mocha**" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Relatório publicado no GitHub Pages!"
+          echo "🌐 URL: https://<seu-usuario>.github.io/<seu-repositorio>/index.html"
