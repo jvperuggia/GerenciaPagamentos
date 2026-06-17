@@ -1,0 +1,142 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-06-17T06:01:18.167Z",
+    "end": "2026-06-17T06:01:18.172Z",
+    "duration": 5,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0e2d683e-ae5f-43a2-9e0a-e5d17f918d40",
+      "title": "",
+      "fullFile": "/home/runner/work/GerenciaPagamentos/GerenciaPagamentos/test/gerenciarPagamentos.test.js",
+      "file": "/test/gerenciarPagamentos.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1537e5ca-1002-4b9d-834b-16d9b58a79dd",
+          "title": "Testes do gerenciamento de pagamentos",
+          "fullFile": "/home/runner/work/GerenciaPagamentos/GerenciaPagamentos/test/gerenciarPagamentos.test.js",
+          "file": "/test/gerenciarPagamentos.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Validar a relização de um pamagento na categoria \"Padrão\" com sucesso",
+              "fullTitle": "Testes do gerenciamento de pagamentos Validar a relização de um pamagento na categoria \"Padrão\" com sucesso",
+              "timedOut": false,
+              "duration": 0,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Arrange\nconst pagamentoFuncao = realizarPagamento(107008806, \"DevUp\", 15.5);\nconst codigo = 107008806;\nconst empresa = \"DevUp\";\nconst valor = 15.5;\n//Asserts\nassert.equal(pagamentoFuncao.codigo, codigo);\nassert.equal(pagamentoFuncao.empresa, empresa);\nassert.equal(pagamentoFuncao.valor, valor);\nconsole.log(\"Novo Pagamento cadastrado com sucesso.\");\nconsole.log(\"Categria: Padrão\");",
+              "err": {},
+              "uuid": "054684e3-b81b-4027-9a6e-40212f1a0d3e",
+              "parentUUID": "1537e5ca-1002-4b9d-834b-16d9b58a79dd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validar a consulta do último pagamento com categoria \"Cara\".",
+              "fullTitle": "Testes do gerenciamento de pagamentos Validar a consulta do último pagamento com categoria \"Cara\".",
+              "timedOut": false,
+              "duration": 0,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Arrange\nconst pagamentoFuncao = realizarPagamento(91300878, \"BoraKodar\", 100.01);\nconst ultimoPagamento = consultarUltimoPagamento();\n// Assert\nassert.equal(ultimoPagamento.codigo, 91300878);\nassert.equal(ultimoPagamento.empresa, \"BoraKodar\");\nassert.equal(ultimoPagamento.valor, 100.01);\nconsole.log(ultimoPagamento);",
+              "err": {},
+              "uuid": "c3abc9fb-ab8c-4210-949c-0378c7674592",
+              "parentUUID": "1537e5ca-1002-4b9d-834b-16d9b58a79dd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validar a consulta do último pagamento com categoria \"Padrão\".",
+              "fullTitle": "Testes do gerenciamento de pagamentos Validar a consulta do último pagamento com categoria \"Padrão\".",
+              "timedOut": false,
+              "duration": 0,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Arrange\nconst pagamentoFuncao = realizarPagamento(91300878, \"JaKodey\", 100.0);\nconst ultimoPagamento = consultarUltimoPagamento();\n// Assert\nassert.equal(ultimoPagamento.codigo, 91300878);\nassert.equal(ultimoPagamento.empresa, \"JaKodey\");\nassert.equal(ultimoPagamento.valor, 100.0);\nconsole.log(ultimoPagamento);",
+              "err": {},
+              "uuid": "25b3e2a5-bbfe-4c46-88c9-a61358098c0b",
+              "parentUUID": "1537e5ca-1002-4b9d-834b-16d9b58a79dd",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "054684e3-b81b-4027-9a6e-40212f1a0d3e",
+            "c3abc9fb-ab8c-4210-949c-0378c7674592",
+            "25b3e2a5-bbfe-4c46-88c9-a61358098c0b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "8.1.3"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "reportFilename": "mochawesome",
+        "quiet": "true"
+      },
+      "version": "6.3.2"
+    }
+  }
+}
