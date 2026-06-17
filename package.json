@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=index"
+    "test": "mocha --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=mochawesome,quiet=true"
   },
   "keywords": [],
   "author": "",
   "type": "module",
   "license": "ISC",
   "dependencies": {
-    "mocha": "^11.3.0"
+    "mocha": "^8.1.3"
   },
   "devDependencies": {
-    "mochawesome": "^1.5.5"
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2"
   }
 }
