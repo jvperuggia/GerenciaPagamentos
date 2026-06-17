@@ -53,3 +53,15 @@ jobs:
         with:
           path: ./mochawesome-report
           name: Relatório de Testes Mocha
+      - name: Adicionar resumo no GitHub Actions
+        if: ${{ always() }}
+        run: |
+          passed=$(jq '.stats.passes' mochawesome-report/mochawesome.json)
+          failed=$(jq '.stats.failures' mochawesome-report/mochawesome.json)
+          total=$(jq '.stats.tests' mochawesome-report/mochawesome.json)
+
+          echo "## 📊 Resumo dos Testes" >> $GITHUB_STEP_SUMMARY
+          echo "- Total de testes: $total" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Passaram: $passed" >> $GITHUB_STEP_SUMMARY
+          echo "- ❌ Falharam: $failed" >> $GITHUB_STEP_SUMMARY
+          echo "- Relatório completo disponível como artefato: **Relatório de Testes Mocha**" >> $GITHUB_STEP_SUMMARY   
