@@ -47,6 +47,14 @@ jobs:
       - name: Rodar testes com mochawesome
         run: npm test
 
+      - name: Consolidar relatórios JSON
+        if: ${{ always() }}
+        run: npx mochawesome-merge mochawesome-report/*.json > mochawesome-report/merged.json
+
+      - name: Gerar relatório HTML consolidado
+        if: ${{ always() }}
+        run: npx marge mochawesome-report/merged.json --reportDir mochawesome-report --reportFilename index  
+
       - name: Upload do relatório de testes
         uses: actions/upload-artifact@v4
         if: ${{ always() }}
@@ -56,12 +64,12 @@ jobs:
       - name: Adicionar resumo no GitHub Actions
         if: ${{ always() }}
         run: |
-          passed=$(jq '.stats.passes' mochawesome-report/mochawesome.json)
-          failed=$(jq '.stats.failures' mochawesome-report/mochawesome.json)
-          total=$(jq '.stats.tests' mochawesome-report/mochawesome.json)
+          passed=$(jq '.stats.passes' mochawesome-report/merged.json)
+          failed=$(jq '.stats.failures' mochawesome-report/merged.json)
+          total=$(jq '.stats.tests' mochawesome-report/merged.json)
 
           echo "## 🧪 Resumo dos Testes" >> $GITHUB_STEP_SUMMARY
           echo "- Total de testes: $total" >> $GITHUB_STEP_SUMMARY
           echo "- ✅ Passaram: $passed" >> $GITHUB_STEP_SUMMARY
           echo "- ❌ Falharam: $failed" >> $GITHUB_STEP_SUMMARY
-          echo "- 📂 Relatório completo disponível como artefato: **Relatório de Testes Mocha**" >> $GITHUB_STEP_SUMMARY  
+          echo "- 📂 Relatório consolidado disponível como artefato: **Relatório Consolidado Mocha**" >> $GITHUB_STEP_SUMMARY
