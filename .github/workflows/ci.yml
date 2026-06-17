@@ -67,7 +67,7 @@ jobs:
         with:
           path: ./mochawesome-report
           name: Relatório de Testes Mocha
-          
+
       - name: Adicionar resumo no GitHub Actions
         if: ${{ always() }}
         run: |
@@ -81,15 +81,15 @@ jobs:
           echo "- ❌ Falharam: $failed" >> $GITHUB_STEP_SUMMARY
           echo "- 📂 Relatório consolidado disponível como artefato: **Relatório Consolidado Mocha**" >> $GITHUB_STEP_SUMMARY
       
-      - name: Publicar relatório no GitHub Pages
-        if: ${{ always() }}
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./mochawesome-report    
+      # - name: Publicar relatório no GitHub Pages
+      #   if: ${{ always() }}
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./mochawesome-report    
 
-      - name: Mostrar link do relatório
-        if: ${{ always() }}
-        run: |
-          echo "✅ Relatório publicado no GitHub Pages!"
-          echo "🌐 URL: https://<seu-usuario>.github.io/<seu-repositorio>/index.html"
+      # - name: Mostrar link do relatório
+      #   if: ${{ always() }}
+      #   run: |
+      #     echo "✅ Relatório publicado no GitHub Pages!"
+      #     echo "🌐 URL: https://<seu-usuario>.github.io/<seu-repositorio>/index.html"
