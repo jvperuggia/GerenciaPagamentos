@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=index"
   },
   "keywords": [],
   "author": "",
   "type": "module",
   "license": "ISC",
   "dependencies": {
-    "mocha": "^11.7.5"
+    "mocha": "^11.3.0"
+  },
+  "devDependencies": {
+    "mochawesome": "^1.5.5"
   }
 }

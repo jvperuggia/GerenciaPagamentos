@@ -1,40 +1,51 @@
-name: Minha Pipe
+name: Node.js CI
 
 on:
-  workflow_dispatch:   # permite rodar manualmente
-    push:
-      branches:
-      - main           # roda automaticamente em cada push na main
-    pull_request:
-      branches:
-      - main           # roda em PRs para main
+  workflow_dispatch: # execução manual
+  push:
+    branches:
+      - main # execução automática em push na main
+  pull_request:
+    branches:
+      - main # execução automática em PRs para main
 
 jobs:
-  build:
+  e2e-tests:
     runs-on: ubuntu-latest
+    # runs-on: self-hosted # usar o runner próprio
 
     strategy:
       matrix:
-        node-version: 20.x # versões que vou testar
+        node-version: [23.x] # versões do Node que você quer testar
 
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v3
+      # clone do projeto
+      - uses: actions/checkout@v4
 
-    - name: Configurar Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      # instalação do node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Instalar dependências
-      run: npm install
+      # cache de dependências (npm)
+      - name: Cache de dependências
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
 
-    - name: Rodar testes
-      run: npm test
+      # instalar dependências
+      - name: Instalar dependências
+        run: npm install
 
-    - name: Salvando relatórios de testes
-      uses: actions/upload-artifact@v4
-      if: ${{ always() }}
-      with:
-        path: ./playwright-report
-        name: relatório de Testes E2E  
+      - name: Rodar testes com mochawesome
+        run: npm test
+
+      - name: Upload do relatório de testes
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          path: ./mochawesome-report
+          name: Relatório de Testes Mocha

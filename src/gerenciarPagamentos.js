@@ -28,48 +28,45 @@ caso contrário, a propriedade categoria ficará como 'padrão'. O método de co
 
 */
 const listaPagamentos = [
-    {
-        codigo: 280260683, 
-        empresa: 'Codex', 
-        valor: 75.90, 
-    },
-    {
-        codigo: 405675610, 
-        empresa: 'Zetta', 
-        valor: 82000.00
-    },
-    {
-        codigo: 296754271, 
-        empresa: 'CyberCore', 
-        valor: 3020
-    },
-    {
-        codigo: 147034176, 
-        empresa: 'Zetta', 
-        valor: 99
-    },
-    {
-        codigo: 628352222, 
-        empresa: 'CloudeWise', 
-        valor: 100.00
-    }
-]  
-
+  {
+    codigo: 280260683,
+    empresa: "Codex",
+    valor: 75.9,
+  },
+  {
+    codigo: 405675610,
+    empresa: "Zetta",
+    valor: 82000.0,
+  },
+  {
+    codigo: 296754271,
+    empresa: "CyberCore",
+    valor: 3020,
+  },
+  {
+    codigo: 147034176,
+    empresa: "Zetta",
+    valor: 99,
+  },
+  {
+    codigo: 628352222,
+    empresa: "CloudeWise",
+    valor: 100.0,
+  },
+];
 
 export function realizarPagamento(codigo, empresa, valor) {
-    
-    const pagamento = {codigo, empresa, valor}
-    listaPagamentos.push(pagamento);
-     if (pagamento.valor > 100) {
-        pagamento.carategoria = 'Cara'; // adiciona categoria
-    } else {
-        pagamento.carategoria = 'Padrão'
-    }
-    return pagamento
+  const pagamento = { codigo, empresa, valor };
+  listaPagamentos.push(pagamento);
+  if (pagamento.valor > 100) {
+    pagamento.carategoria = "Cara"; // adiciona categoria
+  } else {
+    pagamento.carategoria = "Padrão";
+  }
+  return pagamento;
 }
 
-
 export function consultarUltimoPagamento(codigo) {
-    const ultimoPagamento = listaPagamentos.at(-1)    
-    return ultimoPagamento
+  const ultimoPagamento = listaPagamentos.at(-1);
+  return ultimoPagamento;
 }
