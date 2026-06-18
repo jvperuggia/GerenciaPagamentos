@@ -28,7 +28,7 @@ Então se eu quiser rodar por exemplo no dia 25 de Junho as 00:30hs, seria assim
 Os meus agendamentos ficaram assim: 
 
     **#1° agendamento** - Roda as Quintas e Sextas a cada 15 minutos
-    - cron: '*/15 * * * 3,5'
+    - cron: '*/15 * * * 4,5'
     **#2° agendamento** - Roda aos sábados e domingos a cada 50 minutos    
     - cron: '0 * * * 4,6'        
     
