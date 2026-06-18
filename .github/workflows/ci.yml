@@ -14,11 +14,11 @@ on:
   schedule:
     # Cronograma de execução
     #1- minuto, 2 - hora, 3 - dia do mes, 4 - mês,
-    - cron: '*/15 * * * 2,3,6'    
+    - cron: "*/15 * * * 2,3,6"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # Não exibir alerta do gitHub no final da execução
-    
+
 jobs:
   e2e-tests:
     runs-on: ubuntu-latest
@@ -59,7 +59,7 @@ jobs:
 
       - name: Gerar relatório HTML consolidado
         if: ${{ always() }}
-        run: npx marge mochawesome-report/merged.json --reportDir mochawesome-report --reportFilename index  
+        run: npx marge mochawesome-report/merged.json --reportDir mochawesome-report --reportFilename index
 
       - name: Upload do relatório de testes
         uses: actions/upload-artifact@v4
@@ -80,13 +80,13 @@ jobs:
           echo "- ✅ Passaram: $passed" >> $GITHUB_STEP_SUMMARY
           echo "- ❌ Falharam: $failed" >> $GITHUB_STEP_SUMMARY
           echo "- 📂 Relatório consolidado disponível como artefato: **Relatório Consolidado Mocha**" >> $GITHUB_STEP_SUMMARY
-      
+
       # - name: Publicar relatório no GitHub Pages
       #   if: ${{ always() }}
       #   uses: peaceiris/actions-gh-pages@v3
       #   with:
       #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./mochawesome-report    
+      #     publish_dir: ./mochawesome-report
 
       # - name: Mostrar link do relatório
       #   if: ${{ always() }}
