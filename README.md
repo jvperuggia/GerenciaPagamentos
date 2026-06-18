@@ -13,7 +13,7 @@ A pipeline dispara em diferentes situações:
   **2.1 - Push na branch main:** Sempre que subir novar atualização na branch principal.
   **2.2 - Pull Requests para main:** Inclui essa execução para pegar possíveis problemas antes de fazer o merge na Main.
 
-**3 - Execução Agendada:** Configurei para rodas 2 agendamentos: "Quartas e quintas a cada 15 minutos" e "Sábados e domingos a cada 50 minutos.".
+**3 - Execução Agendada:** Configurei para rodas 2 agendamentos: "Quintas e Sextas a cada 15 minutos" e "Sábados e domingos a cada 50 minutos.".
 A configuração do agendamento é separada por 5 asteriscos " * * * * * " e funciona da seguinte forma:
 
       ┌───────────── minuto (0 - 59)
@@ -27,11 +27,11 @@ A configuração do agendamento é separada por 5 asteriscos " * * * * * " e fun
 Então se eu quiser rodar por exemplo no dia 25 de Junho as 00:30hs, seria assim: '30 0 25 6 *'. neste exemplo o dia da semana eu mantive '*' porque não foi necessário usar.
 Os meus agendamentos ficaram assim: 
 
-    schedule: # execução agendada
-        #1° agendamento - Roda as Quartas e Quintas a cada 15 minutos
-        - cron: '*/15 * * * 3,5'
-        #1° agendamento - Roda aos sábados e domingos a cada 50 minutos    
-        - cron: '*/50 * * * 0,6'
+    **#1° agendamento** - Roda as Quintas e Sextas a cada 15 minutos
+    - cron: '*/15 * * * 3,5'
+    **#2° agendamento** - Roda aos sábados e domingos a cada 50 minutos    
+    - cron: '0 * * * 4,6'        
+    
 **Obs:** Note que para período de tempo usando de 15 em 15 minutos por exemplo, eu declarei os minutos como: '*/15' e não precisei utilizar horas.
 também não utilizei Dia e Mês porque optei por utilizar dias da semana.
     
