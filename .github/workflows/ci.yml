@@ -1,23 +1,22 @@
 name: Pipe Pagamentos
 
-permissions:
-  contents: write
-
 on:
   workflow_dispatch: # execução manual
-  push:
+  push: # execução automática em push na main
     branches:
-      - main # execução automática em push na main
-  pull_request:
+      - main 
+  pull_request: # execução automática em PRs para main, incluido para testar no github antes de fazer o merge para a main
     branches:
-      - main # execução automática em PRs para main
-  schedule:
-    # Cronograma de execução
-    #1- minuto, 2 - hora, 3 - dia do mes, 4 - mês,
-    - cron: '*/15 * * * 2,3,6'    
+      - main 
+  schedule: # execução agendada
+    #1° agendamento - Roda as Quartas e Quintas a cada 15 minutos
+    - cron: '*/15 * * * 3,5'
+    #1° agendamento - Roda aos sábados e domingos a cada 50 minutos    
+    - cron: '*/50 * * * 0,6'    
 
+# Forçar para não exibir mais alerta do gitHub no final da execução    
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # Não exibir alerta do gitHub no final da execução
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
     
 jobs:
   e2e-tests:
@@ -67,7 +66,7 @@ jobs:
         with:
           path: ./mochawesome-report
           name: Relatório de Testes Mocha
-
+          
       - name: Adicionar resumo no GitHub Actions
         if: ${{ always() }}
         run: |
@@ -79,17 +78,4 @@ jobs:
           echo "- Total de testes: $total" >> $GITHUB_STEP_SUMMARY
           echo "- ✅ Passaram: $passed" >> $GITHUB_STEP_SUMMARY
           echo "- ❌ Falharam: $failed" >> $GITHUB_STEP_SUMMARY
-          echo "- 📂 Relatório consolidado disponível como artefato: **Relatório Consolidado Mocha**" >> $GITHUB_STEP_SUMMARY
-      
-      # - name: Publicar relatório no GitHub Pages
-      #   if: ${{ always() }}
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./mochawesome-report    
-
-      # - name: Mostrar link do relatório
-      #   if: ${{ always() }}
-      #   run: |
-      #     echo "✅ Relatório publicado no GitHub Pages!"
-      #     echo "🌐 URL: https://<seu-usuario>.github.io/<seu-repositorio>/index.html"
+          echo "- 📂 Relatório/Artefato está disponível como: **Relatório Consolidado Mocha**" >> $GITHUB_STEP_SUMMARY
