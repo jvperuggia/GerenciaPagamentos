@@ -40,7 +40,7 @@ também não utilizei Dia e Mês porque optei por utilizar dias da semana.
 
 **1. Preparação do ambiente**
 Faz o checkout do código.
-Instala o Node.js (versão 23.x).
+Instala o Node.js (versões 20.x, 22.x e 23.x), _Também deixei uma linha comentada para quando quiser rodar apenas a ultima versão do node._
 Configura cache de dependências para acelerar execuções futuras.
 
 **2. Instalação e testes**
