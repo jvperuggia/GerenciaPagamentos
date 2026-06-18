@@ -27,10 +27,10 @@ A configuração do agendamento é separada por 5 asteriscos " * * * * * " e fun
 Então se eu quiser rodar por exemplo no dia 25 de Junho as 00:30hs, seria assim: '30 0 25 6 *'. neste exemplo o dia da semana eu mantive '*' porque não foi necessário usar.
 Os meus agendamentos ficaram assim: 
 
-    **#1° agendamento** - Roda as Quintas e Sextas a cada 15 minutos
+     #1° agendamento - Roda as Quintas e Sextas a cada 15 minutos
     - cron: '*/15 * * * 4,5'
-    **#2° agendamento** - Roda aos sábados e domingos a cada 50 minutos    
-    - cron: '0 * * * 4,6'        
+    #2° agendamento - Roda aos sábados e domingos a cada hora    
+    - cron: '0 * * * 0,6'       
     
 **Obs:** Note que para período de tempo usando de 15 em 15 minutos por exemplo, eu declarei os minutos como: '*/15' e não precisei utilizar horas.
 também não utilizei Dia e Mês porque optei por utilizar dias da semana.
