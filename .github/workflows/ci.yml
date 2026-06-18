@@ -78,4 +78,4 @@ jobs:
           echo "- Total de testes: $total" >> $GITHUB_STEP_SUMMARY
           echo "- ✅ Passaram: $passed" >> $GITHUB_STEP_SUMMARY
           echo "- ❌ Falharam: $failed" >> $GITHUB_STEP_SUMMARY
-          echo "- 📂 Relatório/Artefato está disponível como: **Relatório Consolidado Mocha**" >> $GITHUB_STEP_SUMMARY
+          echo "- 📂 Relatório/Artefato está disponível como: **Relatório de Testes de Pagamento**" >> $GITHUB_STEP_SUMMARY
