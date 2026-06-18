@@ -25,7 +25,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [23.x] # versões do Node que você quer testar
+        node-version: [ 20.x, 22.x, 23.x] # versões do Node que você quer testar
+        #node-version: latest #--- aqui para quando quiser usar a versão mais recente do node
 
     steps:
       # clone do projeto
