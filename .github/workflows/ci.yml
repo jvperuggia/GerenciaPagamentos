@@ -11,8 +11,8 @@ on:
   schedule: # execução agendada
     #1° agendamento - Roda as Quintas e Sextas a cada 15 minutos
     - cron: '*/15 * * * 4,5'
-    #2° agendamento - Roda aos sábados e domingos a cada 50 minutos    
-    - cron: '0 * * * 4,6'        
+    #2° agendamento - Roda aos sábados e domingos a cada hora    
+    - cron: '0 * * * 0,6'        
 
 # Forçar para não exibir mais alerta do gitHub no final da execução    
 env:
