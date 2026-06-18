@@ -42,6 +42,7 @@ também não utilizei Dia e Mês porque optei por utilizar dias da semana.
 Faz o checkout do código.
 Instala o Node.js (versões 20.x, 22.x e 23.x), _Também deixei uma linha comentada para quando quiser rodar apenas a ultima versão do node._
 Configura cache de dependências para acelerar execuções futuras.
+Obs: Primeiro fiz com as 3 versões, mas deixei ajustado para executar apenas na versão 23.x
 
 **2. Instalação e testes**
 Instala todas as dependências do projeto (npm install).
